@@ -29,17 +29,17 @@
 
 {{ "<!-- Google Map API -->" | safeHTML }}
 {{ if site.Params.map.enable }}
-<script src="{{ site.Params.map.gmap_api | safeURL }}"></script>
+<script defer src="{{ site.Params.map.gmap_api | safeURL }}"></script>
 {{ end }}
 
 {{ "<!-- JS Plugins -->" | safeHTML }}
 {{ range site.Params.plugins.js}}
-<script src="{{ .link | absURL }}"></script>
+<script async src="{{ .link | absURL }}"></script>
 {{ end }}
 
 {{ "<!-- Main Script -->" | safeHTML }}
 {{ $script := resources.Get "js/script.js" | minify | fingerprint "sha384"}}
-<script src="{{ $script.Permalink }}" integrity="{{ $script.Data.Integrity }}"></script>
+<script async src="{{ $script.Permalink }}" integrity="{{ $script.Data.Integrity }}"></script>
 
 <!-- cookie -->
 {{ if site.Params.cookies.enable }}
